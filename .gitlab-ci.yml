@@ -1,0 +1,60 @@
+image: 
+  name: alpine/helm
+  entrypoint: [""]
+
+stages:
+  - test
+  - validate
+  - plan
+  - apply
+  - destroy
+
+# before_script:
+#   - echo $GCP_SERVICE_ACCOUNT_KEY > gcp-key.json
+
+test:
+  stage: test
+  script:
+    - echo $CI_PROJECT_DIR
+
+# validate:
+#   stage: validate
+#   script:
+#     - gitlab-terraform init
+#     - gitlab-terraform validate
+
+# plan:
+#   stage: plan
+#   script:
+#     - gitlab-terraform plan $(if [[ "$TF_DESTROY" == "true" ]]; then echo '-destroy'; fi)
+#     - gitlab-terraform plan-json $(if [[ "$TF_DESTROY" == "true" ]]; then echo '-destroy'; fi)
+#   artifacts:
+#     name: plan
+#     paths:
+#       - ${TF_ROOT}/plan.cache
+#     reports:
+#       terraform: ${TF_ROOT}/plan.json
+
+# apply:
+#   stage: apply
+#   rules:
+#     - if: '$TF_DESTROY == "true"'
+#       when: never
+#     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+#   script:
+#     - gitlab-terraform apply
+#   dependencies:
+#     - plan
+#   needs:
+#     - plan
+
+# destroy:
+#   stage: destroy
+#   rules:
+#     - if: '$TF_DESTROY == "true"'
+#   script:
+#     - gitlab-terraform destroy
+#   dependencies:
+#     - plan
+#   needs:
+#     - plan
