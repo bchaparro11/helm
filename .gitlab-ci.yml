@@ -10,7 +10,7 @@ stages:
   - destroy
 
 before_script:
-  - echo $GCP_SERVICE_ACCOUNT_KEY > gcloud-service-key.json
+  - echo $GCLOUD_SERVICE_KEY > gcloud-service-key.json
 
 test:
   stage: test
