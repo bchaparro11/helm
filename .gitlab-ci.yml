@@ -1,20 +1,15 @@
 image: 
-  name: alpine/helm
+  name: google/cloud-sdk
   entrypoint: [""]
 
 stages:
-  - test
-  - validate
-  - plan
-  - apply
-  - destroy
+  - initiate
 
 before_script:
   - echo $GCLOUD_SERVICE_KEY > gcloud-service-key.json
 
 test:
-  stage: test
-  image: google/cloud-sdk
+  stage: initiate
   script:
     - echo $CI_PROJECT_DIR
     - ls
