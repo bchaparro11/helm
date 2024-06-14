@@ -24,6 +24,3 @@ initiate:
     - kubectl get ns
     - kubectl create ns $K8S_NS 
     - kubectl get ns
-    - helm install kube-state-metrics bitnami/kube-state-metrics -n $K8S_NS
-    - helm ls -n $K8S_NS
-    - kubectl get all -n $K8S_NS
