@@ -8,11 +8,9 @@ stages:
 before_script:
   - echo $GCLOUD_SERVICE_KEY > gcloud-service-key.json
 
-test:
+initiate:
   stage: initiate
   script:
-    - echo $CI_PROJECT_DIR
-    - ls
     - gcloud auth activate-service-account --key-file gcloud-service-key.json
     - gcloud config set project $GCP_PROJECT_ID
     - gcloud container clusters get-credentials $CLUSTER_NAME --zone $CLUSTER_ZONE --project $GCP_PROJECT_ID
@@ -21,6 +19,9 @@ test:
     - chmod 700 get_helm.sh
     - ./get_helm.sh
     - helm repo add bitnami https://charts.bitnami.com/bitnami
+    - helm repo update
+    - helm repo list
+    - apt-get install kubectl
 
 # validate:
 #   stage: validate
