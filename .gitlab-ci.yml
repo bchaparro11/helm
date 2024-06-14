@@ -21,7 +21,7 @@ initiate:
     - helm repo add bitnami https://charts.bitnami.com/bitnami
     - helm repo update
     - helm repo list
-    - apt-get install kubectl
+    - kubectl --help
 
 # validate:
 #   stage: validate
