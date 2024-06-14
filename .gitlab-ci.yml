@@ -9,20 +9,21 @@ stages:
   - apply
   - destroy
 
-# before_script:
-#   - echo $GCP_SERVICE_ACCOUNT_KEY > gcp-key.json
+before_script:
+  - echo $GCP_SERVICE_ACCOUNT_KEY > ./gcloud-service-key.json
 
 test:
   stage: test
   script:
     - echo $CI_PROJECT_DIR
+    - gcloud auth activate-service-account --key-file ./gcloud-service-key.json
 
-validate:
-  stage: validate
-  script:
-    - helm repo add bitnami https://charts.bitnami.com/bitnami
-    - helm repo update
-    - helm repo list
+# validate:
+#   stage: validate
+#   script:
+#     - helm repo add bitnami https://charts.bitnami.com/bitnami
+#     - helm repo update
+#     - helm repo list
 
 # plan:
 #   stage: plan
