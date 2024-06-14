@@ -9,17 +9,15 @@ stages:
   - apply
   - destroy
 
-script:
-  - echo $CI_PROJECT_DIR
-
 before_script:
   - echo $GCP_SERVICE_ACCOUNT_KEY > ./gcloud-service-key.json
 
 test:
   stage: test
+  image: google/cloud-sdk
   script:
     - echo $CI_PROJECT_DIR
-    # - gcloud auth activate-service-account --key-file ./gcloud-service-key.json
+    - gcloud auth activate-service-account --key-file ./gcloud-service-key.json
 
 # validate:
 #   stage: validate
