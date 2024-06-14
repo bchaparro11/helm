@@ -18,7 +18,7 @@ test:
   script:
     - echo $CI_PROJECT_DIR
     - ls
-    - gcloud auth activate-service-account --key-file ./gcloud-service-key.json
+    - gcloud auth activate-service-account --key-file gcloud-service-key.json
     - gcloud config set project $GCP_PROJECT_ID
     - gcloud container clusters get-credentials $CLUSTER_NAME --zone $CLUSTER_ZONE --project $GCP_PROJECT_ID
 
