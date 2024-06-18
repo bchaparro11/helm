@@ -3,13 +3,13 @@ image:
   entrypoint: [""]
 
 stages:
-  - initiate
+  - init
 
 before_script:
   - echo $GCLOUD_SERVICE_KEY > gcloud-service-key.json
 
-initiate:
-  stage: initiate
+init:
+  stage: init
   script:
     - gcloud auth activate-service-account --key-file gcloud-service-key.json
     - gcloud config set project $GCP_PROJECT_ID
