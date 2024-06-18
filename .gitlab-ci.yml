@@ -18,9 +18,12 @@ initiate:
     - curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
     - chmod 700 get_helm.sh
     - ./get_helm.sh
-    - helm repo add bitnami https://charts.bitnami.com/bitnami
+    - helm repo add kubeflow https://alauda.github.io/kubeflow-chart
     - helm repo update
     - helm repo list
     - kubectl get ns
     - kubectl create ns $K8S_NS 
     - kubectl get ns
+    - helm install my-kubeflow kubeflow/kubeflow --version 1.6.2 -n $K8S_NS
+    - helm ls -n $K8S_NS
+    - kubectl get all -n $K8S_NS
