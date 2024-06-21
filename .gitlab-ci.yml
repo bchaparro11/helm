@@ -19,8 +19,8 @@ init:
     - chmod 700 get_helm.sh
     - ./get_helm.sh
     # - helm repo add community-charts https://community-charts.github.io/helm-charts
-    - helm repo update
-    - helm repo list
+    # - helm repo update
+    # - helm repo list
     - kubectl get ns
     - kubectl create ns $K8S_NS 
     - kubectl get ns
