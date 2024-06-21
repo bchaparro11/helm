@@ -18,12 +18,13 @@ init:
     - curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
     - chmod 700 get_helm.sh
     - ./get_helm.sh
-    - helm repo add community-charts https://community-charts.github.io/helm-charts
+    # - helm repo add community-charts https://community-charts.github.io/helm-charts
     - helm repo update
     - helm repo list
     - kubectl get ns
     - kubectl create ns $K8S_NS 
     - kubectl get ns
-    - helm install my-kserve community-charts/kserve --version 1.0.1 -n $K8S_NS
+    # - helm install my-kserve community-charts/kserve --version 1.0.1 -n $K8S_NS
+    - helm install my-kserve ./kserve-1.0.1.tgz -n $K8S_NS
     - helm ls -n $K8S_NS
     - kubectl get all -n $K8S_NS
